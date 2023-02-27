@@ -9,6 +9,13 @@ export default createTheme(theme, {
         size: "small",
       },
     },
+    MuiAlert: {
+      styleOverrides: {
+        filledError: {
+          backgroundColor: "#ef5350",
+        },
+      },
+    },
     MuiTextField: {
       defaultProps: {
         margin: "none",
