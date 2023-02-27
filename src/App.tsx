@@ -19,7 +19,7 @@ import Form from "./components/form";
 const schema = z.object({
   homeRoomName: z.string().min(1),
   studentNumber: z.string().min(1),
-  nounIds: z.array(z.number()).min(2),
+  nouns: z.array(z.string()).min(2),
 });
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
     defaultValues: {
       homeRoomName: "",
       studentNumber: "",
-      nounIds: [],
+      nouns: [],
     },
     mode: "all",
     resolver: zodResolver(schema),
@@ -98,9 +98,9 @@ function App() {
                 <Form.Input label="Home Room" name="homeRoomName" />
                 <Form.Input label="Student Number" name="studentNumber" />
                 <Form.ImageSelection
-                  name="nounIds"
+                  name="nouns"
                   options={nouns.data}
-                  optionValueKey="id"
+                  optionValueKey="name"
                   optionImgSrcKey="imgSrc"
                 />
                 <Button

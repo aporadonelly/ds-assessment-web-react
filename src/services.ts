@@ -6,7 +6,7 @@ export type GetAllNounResponse = Noun[];
 export type ConferenceVerificationRequestBody = {
   homeRoomName: string;
   studentNumber: string;
-  nounIds: number[];
+  nouns: string[];
 };
 
 export type ConferenceVerificationResponse = Conference;
