@@ -17,9 +17,9 @@ import { useConferenceVerification } from "./mutations";
 import Form from "./components/form";
 
 const schema = z.object({
-  homeRoomName: z.string().min(1),
-  studentNumber: z.string().min(1),
-  nouns: z.array(z.string()).min(2),
+  homeRoomName: z.string().min(1, "Please enter the homeroom name"),
+  studentNumber: z.string().min(1, "Please enter the student number"),
+  nouns: z.array(z.string()).min(2, "Please select the 2 pictures on the letter"),
 });
 
 function App() {

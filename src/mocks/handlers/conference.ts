@@ -15,22 +15,18 @@ export const conferenceHandler = [
       startDateTime: process.env.TEST_CONFERENCE_START_DATE_TIME,
     };
 
-    const duration = moment(now).diff(conference.startDateTime, "minutes");
-
-    console.log(duration);
-
     const { homeRoomName, studentNumber, nouns } =
       await req.json<ConferenceVerificationRequestBody>();
 
     if (homeRoomName !== conference.homeRoomName) {
       return res(
         ctx.status(400),
-        ctx.json({ message: "Invalid home room name" })
+        ctx.json({ message: "Incorrect Homeroom name" })
       );
     } else if (studentNumber !== conference.studentNumber) {
       return res(
         ctx.status(400),
-        ctx.json({ message: "Invalid student number" })
+        ctx.json({ message: "Incorrect student number" })
       );
     } else if (
       nouns.sort().join("") !== conference.nouns.split(", ").sort().join("")
@@ -42,12 +38,12 @@ export const conferenceHandler = [
     } else if (moment(now).diff(conference.startDateTime, "minutes") >= 10) {
       return res(
         ctx.status(400),
-        ctx.json({ message: "sign-in attempt 10 minutes before start time" })
+        ctx.json({ message: "Signing in too early. Try again 5 minutes before the conference start time." })
       );
     } else if (moment(conference.startDateTime).diff(now, "minutes") >= 5) {
       return res(
         ctx.status(400),
-        ctx.json({ message: "sign-in attempt 5 minutes after the start time" })
+        ctx.json({ message: "Conference schedule has passed. Please contact your teacher." })
       );
     } else {
       return res(ctx.status(200), ctx.json(pick(conference, "studentNumber")));

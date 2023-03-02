@@ -22,6 +22,9 @@ function Input(props: InputProps): ReactElement {
     <TextField
       {...rest}
       {...register(name, { valueAsNumber: type === "number" })}
+      inputProps={{
+        "data-testid": name,
+      }}
       type={type}
       name={name}
       error={Boolean(error)}

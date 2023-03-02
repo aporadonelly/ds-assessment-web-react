@@ -89,6 +89,8 @@ function ImageSelection<TOption extends object, TValue = unknown>(
     <FormControl error={Boolean(error)}>
       <Box
         ref={field.ref}
+        role="group"
+        aria-label="image selection"
         display="grid"
         gridAutoRows="100px"
         gridTemplateColumns="100px 100px 100px"
@@ -97,9 +99,13 @@ function ImageSelection<TOption extends object, TValue = unknown>(
         {options?.map((option) => (
           <ImageButton
             key={getOptionValue(option)}
+            aria-label={getOptionValue(option)}
             error={Boolean(error)}
+            aria-pressed={field.value.includes(getOptionValue(option))}
+            data-testid={name}
             selected={field.value.includes(getOptionValue(option))}
             onClick={createClickHandler(getOptionValue(option))}
+            value={getOptionValue(option)}
           >
             <Image src={`http://localhost:3000/${getOptionImgSrc(option)}`} />
           </ImageButton>
